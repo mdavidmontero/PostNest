@@ -1,9 +1,12 @@
 import { IsInt, IsNotEmpty, IsNumber, IsString } from 'class-validator';
 
 export class CreateProductDto {
-  @IsNotEmpty({ message: 'El nombre del producto es oblogatorio' })
+  @IsNotEmpty({ message: 'El nombre del producto es obligatorio' })
   @IsString({ message: 'Nombre no valido' })
   name: string;
+
+  @IsNotEmpty({ message: 'El nombre del producto es obligatorio' })
+  image: string;
 
   @IsNotEmpty({ message: 'El Precio del producto es obligatorio' })
   @IsNumber({ maxDecimalPlaces: 2 }, { message: 'Precio no valido' })

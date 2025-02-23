@@ -76,7 +76,9 @@ export class TransactionsService {
       },
     );
 
-    return 'Venta Almacenada correctamente';
+    return {
+      message: 'Venta Almacenada correctamente',
+    };
   }
 
   findAll(transactionDate: string) {

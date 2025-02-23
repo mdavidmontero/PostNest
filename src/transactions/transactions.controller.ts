@@ -23,7 +23,7 @@ export class TransactionsController {
   }
 
   @Get()
-  findAll(@Query('transactionDate') transactionDate: string) {
+  findAll(@Query('transactionsDate') transactionDate: string) {
     return this.transactionsService.findAll(transactionDate);
   }
 
