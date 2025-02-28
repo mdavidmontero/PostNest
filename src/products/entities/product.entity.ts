@@ -1,3 +1,4 @@
+import { User } from 'src/auth/entities/user.entity';
 import { Category } from '../../categories/entities/category.entity';
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
 
@@ -28,4 +29,9 @@ export class Product {
 
   @Column({ type: 'int' })
   categoryId: number;
+
+  @ManyToOne(() => User, (user) => user.product, {
+    eager: true,
+  })
+  user: User;
 }

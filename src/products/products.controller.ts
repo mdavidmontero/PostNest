@@ -18,6 +18,7 @@ import { GetProductsQueryDto } from './dto/get-product.dto';
 import { IdValidationPipe } from '../common/pipes/id-validation/id-validation.pipe';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { UploadImageService } from '../upload-image/upload-image.service';
+import { Auth } from 'src/auth/decorators/auth.decorator.ts.decorator';
 
 @Controller('products')
 export class ProductsController {
@@ -27,11 +28,13 @@ export class ProductsController {
   ) {}
 
   @Post()
+  @Auth()
   create(@Body() createProductDto: CreateProductDto) {
     return this.productsService.create(createProductDto);
   }
 
   @Get()
+  @Auth()
   findAll(@Query() query: GetProductsQueryDto) {
     const category = query.category_id ? query.category_id : null;
     const take = query.take ? query.take : 10;
@@ -40,11 +43,13 @@ export class ProductsController {
   }
 
   @Get(':id')
+  @Auth()
   findOne(@Param('id', IdValidationPipe) id: string) {
     return this.productsService.findOne(+id);
   }
 
   @Put(':id')
+  @Auth()
   update(
     @Param('id', IdValidationPipe) id: string,
     @Body() updateProductDto: UpdateProductDto,
@@ -53,6 +58,7 @@ export class ProductsController {
   }
 
   @Delete(':id')
+  @Auth()
   remove(@Param('id', IdValidationPipe) id: string) {
     return this.productsService.remove(+id);
   }
